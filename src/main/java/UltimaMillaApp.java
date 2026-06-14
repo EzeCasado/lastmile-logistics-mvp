@@ -1,3 +1,5 @@
+import billing.BillingService;
+import core.SimulationEngine;
 import core.eventbus.EventBus;
 import optimizer.OptimizerService;
 import warehouse.WarehouseService;
@@ -13,8 +15,11 @@ public class UltimaMillaApp {
 
         OptimizerService optimizerService = new OptimizerService(eventBus);
 
+        SimulationEngine engine = new SimulationEngine(warehouseService, optimizerService);
+        BillingService billingService = new BillingService(eventBus);
 
-        warehouseService.registrarPedido(101, -34.60, -58.38, TipoUrgencia.URGENTE, 10);
+        engine.arrancarSimulacion();
+
 
     }
 
